@@ -4,12 +4,16 @@ import org.scalatest.{FunSpec, Matchers}
 
 class PresentEmployeeUseCaseTest extends FunSpec with Matchers {
 
+  def fixture = new {
+    val useCase = new PresentEmployeeUseCase(new InMemoryEmployeeRepository)
+    useCase.saveEmployee(Employee("Eric", new Salary(30000d)))
+    useCase.saveEmployee(Employee("Didier", new Salary(30000d)))
+  }
+
   describe("PresentEmployeeUseCase") {
 
     it("can return Employees") {
-      val useCase = new PresentEmployeeUseCase(new InMemoryEmployeeRepository)
-      useCase.saveEmployee(Employee("Eric", new Salary(30000d)))
-      useCase.saveEmployee(Employee("Didier", new Salary(30000d)))
+      val useCase = fixture.useCase
 
       val expenses = useCase.getAllEmployee()
 
@@ -18,15 +22,12 @@ class PresentEmployeeUseCaseTest extends FunSpec with Matchers {
     }
 
     it("can compute total wages per year") {
-      val useCase = new PresentEmployeeUseCase(new InMemoryEmployeeRepository)
-      useCase.saveEmployee(Employee("Eric", new Salary(30000d)))
-      useCase.saveEmployee(Employee("Didier", new Salary(30000d)))
+      val useCase = fixture.useCase
 
       val totalSalaries = useCase.getTotalSalaries()
 
-      totalSalaries should be (60000d +- .01d)
+      totalSalaries should be(60000d +- .01d)
     }
-
 
   }
 
