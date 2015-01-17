@@ -2,8 +2,8 @@ package com.rastakiki.scalatest
 
 trait ExpenseRepository {
 
-  def findAll: Seq[Expense]
+  def findAll: Seq[Employee]
 
-  def save(expense: Expense): Unit
+  def save(expense: Employee): Unit
 
 }
