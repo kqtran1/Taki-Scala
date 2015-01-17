@@ -5,7 +5,7 @@ version := "1.0"
 scalaVersion := "2.11.4"
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "2.2.1" % "test",
+  "org.scalatest" %% "scalatest" % "2.2.1" % "test" withSources() withJavadoc(),
   "junit" % "junit" % "4.11" % "test",
   "com.novocode" % "junit-interface" % "0.11" % "test",
   "org.mockito" % "mockito-core" % "1.9.5" % "test",
